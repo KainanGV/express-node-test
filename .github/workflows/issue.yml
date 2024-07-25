@@ -1,0 +1,17 @@
+name: Issue Management
+
+on:
+  issues:
+    types: [opened, edited, closed]
+
+jobs:
+  manage-issues:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Manage issues
+      run: |
+        echo "Issue ${{ github.event.issue.number }} has been ${{ github.event.action }}"

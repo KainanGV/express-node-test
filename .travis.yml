@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - '14'
+services:
+  - mongodb
+cache: yarn
+branches:
+  only:
+    - master
+env:
+  global:
+    - PORT=3000
+    - MONGODB_URL=mongodb://localhost:27017/node-express
+    - JWT_SECRET=9113c031-c024-461e-bfe3-0be326a84d8a
+    - JWT_ACCESS_EXPIRATION_MINUTES=10
+    - JWT_REFRESH_EXPIRATION_DAYS=15
+script:
+  - yarn lint
+  - yarn test
+after_success: yarn coverage:coveralls
